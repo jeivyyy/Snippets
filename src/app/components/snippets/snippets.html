@@ -7,28 +7,97 @@
       placeholder="Digite algo para capturar"
     />
 
-    <button class="copy" (click)="openNamingWindow(snippetText)">Capturar</button>
+    <button class="copy" (click)="openNamingWindow(snippetText)">
+      Capturar
+    </button>
 
-    <small class="shortcut-info"> Atalho: Alt + C </small>
+    <small class="shortcut-info">
+      Atalho: Alt + C
+    </small>
   </div>
 
   <div class="container">
-    <h3>Textos salvos</h3>
+    <div class="container-header">
+      <h3>Textos salvos</h3>
 
-    @if (snippets.length === 0) {
-      <p class="empty">Nenhum texto salvo ainda.</p>
+      <button class="filter-button" type="button" (click)="toggleFilter()">
+        <img [src]="filterIcon" alt="Filtrar" />
+      </button>
+
+      @if (isFilterOpen) {
+        <div class="filter-panel">
+          <button
+            class="filter-option all-option"
+            type="button"
+            (click)="clearFilter()"
+          >
+            Todos
+          </button>
+
+          @for (tag of tagOptions; track tag.key) {
+            <button
+              class="filter-option"
+              type="button"
+              [class.active]="selectedFilter === tag.key"
+              (click)="applyFilter(tag.key)"
+            >
+              <span
+                class="filter-color"
+                [style.backgroundColor]="tag.color"
+              >
+                <img [src]="tag.icon" [alt]="tag.label" />
+              </span>
+
+              <span>{{ tag.label }}</span>
+            </button>
+          }
+        </div>
+      }
+    </div>
+    @if (selectedFilter) {
+      <p class="active-filter">
+        Filtro ativo:  
+        @for (tag of tagOptions; track tag.key) {
+          @if (tag.key === selectedFilter) {
+            <strong>{{ tag.label }}</strong>
+          }
+        }
+      </p>
     }
 
-    @for (snippet of snippets; track snippet.id) {
-      <div class="snippet-card">
-        <div class="snippet-header">
-          <strong>{{ snippet.name }}</strong>
+    @if (filteredSnippets.length === 0) {
+      <p class="empty">
+        Nenhum texto salvo para este filtro.
+      </p>
+    }
 
-          <button class="mini-button" (click)="copySavedSnippet(snippet.text)">Copiar</button>
+    @for (snippet of filteredSnippets; track snippet.id) {
+      <div
+        class="snippet-card"
+        [style.backgroundColor]="snippet.color"
+      >
+        <div class="snippet-header">
+          <div class="snippet-title">
+            <img
+              class="snippet-seal"
+              [src]="snippet.icon"
+              [alt]="snippet.name"
+            />
+
+            <strong>{{ snippet.name }}</strong>
+          </div>
+
+          <button class="mini-button" (click)="copySavedSnippet(snippet.text)">
+            Copiar
+          </button>
         </div>
 
         <div class="pasted">
-          <textarea class="textarea" [value]="snippet.text" readonly></textarea>
+          <textarea
+            class="textarea"
+            [value]="snippet.text"
+            readonly
+          ></textarea>
         </div>
       </div>
     }
@@ -38,15 +107,38 @@
     <div class="naming-panel">
       <h4>Nomear texto</h4>
 
-      <p class="pending-info">Um texto foi capturado. Dê um nome para salvar.</p>
+      <p class="pending-info">
+        Um texto foi capturado. Dê um nome e escolha uma tag para salvar.
+      </p>
 
       <input
         class="name-input"
         type="text"
         [(ngModel)]="pendingName"
-        placeholder="Ex: Comando Git, Mensagem, "
+        placeholder="Ex: Comando Git, CPF teste, Mensagem padrão"
         (keydown.enter)="savePendingSnippet()"
       />
+
+      <div class="tag-picker">
+        <span class="tag-label">
+          Tag do card
+        </span>
+
+        <div class="tag-options">
+          @for (tag of tagOptions; track tag.key) {
+            <button
+              type="button"
+              class="tag-option"
+              [class.selected]="pendingTag === tag.key"
+              [style.backgroundColor]="tag.color"
+              (click)="selectTag(tag.key)"
+            >
+              <img [src]="tag.icon" [alt]="tag.label" />
+              <span>{{ tag.label }}</span>
+            </button>
+          }
+        </div>
+      </div>
 
       @if (nameError) {
         <p class="name-error">
@@ -55,9 +147,13 @@
       }
 
       <div class="panel-actions">
-        <button class="save-button" (click)="savePendingSnippet()">Salvar</button>
+        <button class="save-button" (click)="savePendingSnippet()">
+          Salvar
+        </button>
 
-        <button class="cancel-button" (click)="cancelPendingSnippet()">Cancelar</button>
+        <button class="cancel-button" (click)="cancelPendingSnippet()">
+          Cancelar
+        </button>
       </div>
     </div>
   }
