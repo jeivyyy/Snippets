@@ -1,59 +1,50 @@
 # Snippets
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.0.
+Projeto desenvolvido por Jean Martins, tem como função demonstrar como seria se pudessemos copiar, salvar e editar textos a partir de um novo atalho.
+![alt text](image.png)
 
-## Development server
 
-To start a local development server, run:
+## Utilizando...
 
-```bash
-ng serve
+Ao colar um texto dentro do cartão de captura,
+
+```Aperte Alt + C
+```
+que um pequena janela se abra para rapidamene editar o novo cartão de colagem, podendo somente colocar um nome ou, também, adicionar um selo para melhor identificação do cartão a ser salvo.
+![alt text](image-1.png)
+
+
+## Público alvo
+
+Snippets tem como público, usuários que movimentam grandes quantidades de textos, linhas de código, etc.
+Usuários que necessitam de um espaço claro e objetivo, não somente para deixar salvo suas colagens,
+
+```Mas, principalmente, para organizar suas ferramentas de maneira simples e moderna.
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Filtrar
 
-## Code scaffolding
+O projeto conta com um filtro ráído podendo escolher entre 1 (uma) das 4 (quatro) opções de categorias
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```Basta clicar no ícone de funil no canto superior direito da área de cartões, exemplo a seguir:  
 ```
+![alt text](image-2.png)
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## Construção do projeto
 
-## Building
+O projeto foi inteiramente programado a partir do framework Angular. Pois, oferece uma infinidade 
+de funções e ferramentas para a criação de demos para exibições.
 
-To build the project run:
+![alt text](image-3.png)
 
-```bash
-ng build
-```
+## Recursos adicionais
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Para mais informações em usar o Angular CLI, incluindo referencias detalhadas em comandso, visite a página [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli).
 
-## Running unit tests
+---
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Muito obrigado por participar deste projeto comigo!!
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+![alt text](image-4.png) ![alt text](image-5.png) ![alt text](image-6.png) ![alt text](image-7.png) ![alt text](image-8.png)
