@@ -40,32 +40,32 @@ export class Snippets {
 
   selectedFilter: SnippetTag | null = null;
 
-  readonly filterIcon = '/src/app/assets/filter_icon.png';
+  readonly filterIcon = '/assets/filter_icon.png';
 
   readonly tagOptions: TagOption[] = [
     {
       key: 'tecnico',
       label: 'Técnico',
       color: '#a4e787',
-      icon: '/src/app/assets/wrench_icon.png',
+      icon: '/assets/wrench_icon.png',
     },
     {
       key: 'importante',
       label: 'Importante',
       color: '#f1f37e',
-      icon: '/src/app/assets/star_icon.png',
+      icon: '/assets/star_icon.png',
     },
     {
       key: 'urgente',
       label: 'Urgente',
       color: '#ff6a6a',
-      icon: '/src/app/assets/urgent_icon.png',
+      icon: '/assets/urgent_icon.png',
     },
     {
       key: 'pra-depois',
       label: 'Pra depois',
       color: '#748dff',
-      icon: '/src/app/assets/clock_icon.png',
+      icon: '/assets/clock_icon.png',
     },
   ];
 
@@ -81,10 +81,7 @@ export class Snippets {
     }
 
     return this.snippets.filter((snippet) => {
-      return (
-        snippet.tag === selectedTag.key &&
-        snippet.color === selectedTag.color
-      );
+      return snippet.tag === selectedTag.key && snippet.color === selectedTag.color;
     });
   }
 
@@ -92,9 +89,7 @@ export class Snippets {
   handleKeyboardShortcut(event: Event) {
     const keyboardEvent = event as KeyboardEvent;
 
-    const isAltC =
-      keyboardEvent.altKey &&
-      keyboardEvent.key.toLowerCase() === 'c';
+    const isAltC = keyboardEvent.altKey && keyboardEvent.key.toLowerCase() === 'c';
 
     const isEscape = keyboardEvent.key === 'Escape';
 
@@ -149,6 +144,10 @@ export class Snippets {
     this.isFilterOpen = false;
   }
 
+  closeCardConfigWindow() {
+    this.isNamingWindowOpen = false;
+}
+
   async savePendingSnippet() {
     const name = this.pendingName.trim();
 
@@ -186,7 +185,9 @@ export class Snippets {
     }
 
     this.clearPendingSnippet();
-  }
+    this.closeCardConfigWindow();
+    
+  } 
 
   cancelPendingSnippet() {
     this.nameError = 'Dê um nome ao texto antes de fechar.';
@@ -220,8 +221,7 @@ export class Snippets {
     const activeElement = document.activeElement as HTMLInputElement | HTMLTextAreaElement | null;
 
     const isInput =
-      activeElement instanceof HTMLInputElement ||
-      activeElement instanceof HTMLTextAreaElement;
+      activeElement instanceof HTMLInputElement || activeElement instanceof HTMLTextAreaElement;
 
     if (isInput) {
       const value = activeElement.value;
@@ -230,9 +230,7 @@ export class Snippets {
       const selectionEnd = activeElement.selectionEnd ?? 0;
 
       const selectedText =
-        selectionStart !== selectionEnd
-          ? value.slice(selectionStart, selectionEnd)
-          : '';
+        selectionStart !== selectionEnd ? value.slice(selectionStart, selectionEnd) : '';
 
       return selectedText || value;
     }

@@ -1,4 +1,7 @@
 <div class="snippets-page">
+  <div class="bg-img">
+    <img src="/assets/bg-logo.png" class="snippets-logo" />
+  </div>
   <div class="card">
     <input
       class="text"
@@ -7,13 +10,9 @@
       placeholder="Digite algo para capturar"
     />
 
-    <button class="copy" (click)="openNamingWindow(snippetText)">
-      Capturar
-    </button>
+    <button class="copy" (click)="openNamingWindow(snippetText)">Capturar</button>
 
-    <small class="shortcut-info">
-      Atalho: Alt + C
-    </small>
+    <small class="shortcut-info"> Atalho: Alt + C </small>
   </div>
 
   <div class="container">
@@ -26,11 +25,7 @@
 
       @if (isFilterOpen) {
         <div class="filter-panel">
-          <button
-            class="filter-option all-option"
-            type="button"
-            (click)="clearFilter()"
-          >
+          <button class="filter-option all-option" type="button" (click)="clearFilter()">
             Todos
           </button>
 
@@ -41,10 +36,7 @@
               [class.active]="selectedFilter === tag.key"
               (click)="applyFilter(tag.key)"
             >
-              <span
-                class="filter-color"
-                [style.backgroundColor]="tag.color"
-              >
+              <span class="filter-color" [style.backgroundColor]="tag.color">
                 <img [src]="tag.icon" [alt]="tag.label" />
               </span>
 
@@ -54,9 +46,10 @@
         </div>
       }
     </div>
+
     @if (selectedFilter) {
       <p class="active-filter">
-        Filtro ativo:  
+        Filtro ativo:
         @for (tag of tagOptions; track tag.key) {
           @if (tag.key === selectedFilter) {
             <strong>{{ tag.label }}</strong>
@@ -66,38 +59,23 @@
     }
 
     @if (filteredSnippets.length === 0) {
-      <p class="empty">
-        Nenhum texto salvo para este filtro.
-      </p>
+      <p class="empty">Nenhum texto salvo para este filtro.</p>
     }
 
     @for (snippet of filteredSnippets; track snippet.id) {
-      <div
-        class="snippet-card"
-        [style.backgroundColor]="snippet.color"
-      >
+      <div class="snippet-card" [style.backgroundColor]="snippet.color">
         <div class="snippet-header">
           <div class="snippet-title">
-            <img
-              class="snippet-seal"
-              [src]="snippet.icon"
-              [alt]="snippet.name"
-            />
+            <img class="snippet-seal" [src]="snippet.icon" [alt]="snippet.name" />
 
             <strong>{{ snippet.name }}</strong>
           </div>
 
-          <button class="mini-button" (click)="copySavedSnippet(snippet.text)">
-            Copiar
-          </button>
+          <button class="mini-button" (click)="copySavedSnippet(snippet.text)">Copiar</button>
         </div>
 
         <div class="pasted">
-          <textarea
-            class="textarea"
-            [value]="snippet.text"
-            readonly
-          ></textarea>
+          <textarea class="textarea" [value]="snippet.text" readonly></textarea>
         </div>
       </div>
     }
@@ -107,9 +85,7 @@
     <div class="naming-panel">
       <h4>Nomear texto</h4>
 
-      <p class="pending-info">
-        Um texto foi capturado. Dê um nome e escolha uma tag para salvar.
-      </p>
+      <p class="pending-info">Um texto foi capturado. Dê um nome e escolha uma tag para salvar.</p>
 
       <input
         class="name-input"
@@ -120,9 +96,7 @@
       />
 
       <div class="tag-picker">
-        <span class="tag-label">
-          Tag do card
-        </span>
+        <span class="tag-label"> Tag do card </span>
 
         <div class="tag-options">
           @for (tag of tagOptions; track tag.key) {
@@ -147,13 +121,9 @@
       }
 
       <div class="panel-actions">
-        <button class="save-button" (click)="savePendingSnippet()">
-          Salvar
-        </button>
+        <button class="save-button" (click)="savePendingSnippet()">Salvar</button>
 
-        <button class="cancel-button" (click)="cancelPendingSnippet()">
-          Cancelar
-        </button>
+        <button class="cancel-button" (click)="cancelPendingSnippet()">Cancelar</button>
       </div>
     </div>
   }
