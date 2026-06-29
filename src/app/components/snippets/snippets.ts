@@ -1,10 +1,22 @@
 import { Component, HostListener } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+type SnippetTag = 'tecnico' | 'importante' | 'urgente' | 'pra-depois';
+
+interface TagOption {
+  key: SnippetTag;
+  label: string;
+  color: string;
+  icon: string;
+}
+
 interface SnippetItem {
   id: number;
   name: string;
   text: string;
+  tag: SnippetTag;
+  color: string;
+  icon: string;
 }
 
 @Component({
@@ -19,9 +31,62 @@ export class Snippets {
   snippets: SnippetItem[] = [];
 
   isNamingWindowOpen = false;
+  isFilterOpen = false;
+
   pendingText = '';
   pendingName = '';
+  pendingTag: SnippetTag = 'tecnico';
   nameError = '';
+
+  selectedFilter: SnippetTag | null = null;
+
+  readonly filterIcon = '/src/app/assets/filter_icon.png';
+
+  readonly tagOptions: TagOption[] = [
+    {
+      key: 'tecnico',
+      label: 'Técnico',
+      color: '#a4e787',
+      icon: '/src/app/assets/wrench_icon.png',
+    },
+    {
+      key: 'importante',
+      label: 'Importante',
+      color: '#f1f37e',
+      icon: '/src/app/assets/star_icon.png',
+    },
+    {
+      key: 'urgente',
+      label: 'Urgente',
+      color: '#ff6a6a',
+      icon: '/src/app/assets/urgent_icon.png',
+    },
+    {
+      key: 'pra-depois',
+      label: 'Pra depois',
+      color: '#748dff',
+      icon: '/src/app/assets/clock_icon.png',
+    },
+  ];
+
+  get filteredSnippets(): SnippetItem[] {
+    if (!this.selectedFilter) {
+      return this.snippets;
+    }
+
+    const selectedTag = this.getTagOption(this.selectedFilter);
+
+    if (!selectedTag) {
+      return this.snippets;
+    }
+
+    return this.snippets.filter((snippet) => {
+      return (
+        snippet.tag === selectedTag.key &&
+        snippet.color === selectedTag.color
+      );
+    });
+  }
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardShortcut(event: Event) {
@@ -31,8 +96,7 @@ export class Snippets {
       keyboardEvent.altKey &&
       keyboardEvent.key.toLowerCase() === 'c';
 
-    const isEscape =
-      keyboardEvent.key === 'Escape';
+    const isEscape = keyboardEvent.key === 'Escape';
 
     if (this.isNamingWindowOpen && isEscape) {
       keyboardEvent.preventDefault();
@@ -62,8 +126,27 @@ export class Snippets {
 
     this.pendingText = text;
     this.pendingName = '';
+    this.pendingTag = 'tecnico';
     this.nameError = '';
     this.isNamingWindowOpen = true;
+  }
+
+  selectTag(tag: SnippetTag) {
+    this.pendingTag = tag;
+  }
+
+  toggleFilter() {
+    this.isFilterOpen = !this.isFilterOpen;
+  }
+
+  applyFilter(tag: SnippetTag) {
+    this.selectedFilter = tag;
+    this.isFilterOpen = false;
+  }
+
+  clearFilter() {
+    this.selectedFilter = null;
+    this.isFilterOpen = false;
   }
 
   async savePendingSnippet() {
@@ -78,10 +161,20 @@ export class Snippets {
       return;
     }
 
+    const selectedTag = this.getTagOption(this.pendingTag);
+
+    if (!selectedTag) {
+      this.nameError = 'Selecione uma tag válida.';
+      return;
+    }
+
     const newSnippet: SnippetItem = {
       id: Date.now(),
       name,
       text: this.pendingText,
+      tag: selectedTag.key,
+      color: selectedTag.color,
+      icon: selectedTag.icon,
     };
 
     this.snippets.unshift(newSnippet);
@@ -114,8 +207,13 @@ export class Snippets {
   private clearPendingSnippet() {
     this.pendingText = '';
     this.pendingName = '';
+    this.pendingTag = 'tecnico';
     this.nameError = '';
     this.isNamingWindowOpen = false;
+  }
+
+  private getTagOption(tag: SnippetTag): TagOption | undefined {
+    return this.tagOptions.find((option) => option.key === tag);
   }
 
   private getCapturedText(): string {
