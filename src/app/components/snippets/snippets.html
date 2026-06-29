@@ -1,0 +1,64 @@
+<div class="snippets-page">
+  <div class="card">
+    <input
+      class="text"
+      type="text"
+      [(ngModel)]="snippetText"
+      placeholder="Digite algo para capturar"
+    />
+
+    <button class="copy" (click)="openNamingWindow(snippetText)">Capturar</button>
+
+    <small class="shortcut-info"> Atalho: Alt + C </small>
+  </div>
+
+  <div class="container">
+    <h3>Textos salvos</h3>
+
+    @if (snippets.length === 0) {
+      <p class="empty">Nenhum texto salvo ainda.</p>
+    }
+
+    @for (snippet of snippets; track snippet.id) {
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <strong>{{ snippet.name }}</strong>
+
+          <button class="mini-button" (click)="copySavedSnippet(snippet.text)">Copiar</button>
+        </div>
+
+        <div class="pasted">
+          <textarea class="textarea" [value]="snippet.text" readonly></textarea>
+        </div>
+      </div>
+    }
+  </div>
+
+  @if (isNamingWindowOpen) {
+    <div class="naming-panel">
+      <h4>Nomear texto</h4>
+
+      <p class="pending-info">Um texto foi capturado. Dê um nome para salvar.</p>
+
+      <input
+        class="name-input"
+        type="text"
+        [(ngModel)]="pendingName"
+        placeholder="Ex: Comando Git, Mensagem, "
+        (keydown.enter)="savePendingSnippet()"
+      />
+
+      @if (nameError) {
+        <p class="name-error">
+          {{ nameError }}
+        </p>
+      }
+
+      <div class="panel-actions">
+        <button class="save-button" (click)="savePendingSnippet()">Salvar</button>
+
+        <button class="cancel-button" (click)="cancelPendingSnippet()">Cancelar</button>
+      </div>
+    </div>
+  }
+</div>
