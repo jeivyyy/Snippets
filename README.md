@@ -47,4 +47,4 @@ Para mais informações em usar o Angular CLI, incluindo referencias detalhadas 
 
 ## Muito obrigado por participar deste projeto comigo!!
 
-![alt text](image-9.png)![alt text](image-10.png)![alt text](image-11.png)![alt text](image-12.png)![alt text](image-13.png)
+![alt text](image-9.png) ![alt text](image-10.png) ![alt text](image-11.png) ![alt text](image-12.png) ![alt text](image-13.png)
