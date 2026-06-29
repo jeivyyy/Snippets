@@ -1,7 +1,7 @@
 # Snippets
 
 Projeto desenvolvido por Jean Martins, tem como função demonstrar como seria se pudessemos copiar, salvar e editar textos a partir de um novo atalho.
-![alt text](readme.imgs/image.png)
+![alt text](public/assets/readme.imgs/image.png)
 
 
 ## Utilizando...
@@ -12,7 +12,7 @@ Ao colar um texto dentro do cartão de captura,
     Aperte Alt + C
 ```
 que um pequena janela se abra para rapidamene editar o novo cartão de colagem, podendo somente colocar um nome ou, também, adicionar um selo para melhor identificação do cartão a ser salvo.
-![alt text](readme.imgs/image-1.png)
+![alt text](public/assets/readme.imgs/image-1.png)
 
 
 ## Público alvo
@@ -32,7 +32,7 @@ O projeto conta com um filtro ráído podendo escolher entre 1 (uma) das 4 (quat
 ```
     Basta clicar no ícone de funil no canto superior direito da área de cartões, exemplo a seguir:  
 ```
-![alt text](readme.imgs/image-2.png)
+![alt text](public/assets/readme.imgs/image-2.png)
 
 ---
 
@@ -41,7 +41,7 @@ O projeto conta com um filtro ráído podendo escolher entre 1 (uma) das 4 (quat
 O projeto foi inteiramente programado a partir do framework Angular. Pois, oferece uma infinidade 
 de funções e ferramentas para a criação de demos para exibições.
 
-![alt text](readme.imgs/image-3.png)
+![alt text](public/assets/readme.imgs/image-3.png)
 
 ## Recursos adicionais
 
@@ -51,4 +51,4 @@ Para mais informações em usar o Angular CLI, incluindo referencias detalhadas 
 
 ## Muito obrigado por participar deste projeto comigo!!
 
-![alt text](readme.imgs/image-9.png) ![alt text](readme.imgs/image-10.png) ![alt text](readme.imgs/image-11.png) ![alt text](readme.imgs/image-12.png) ![alt text](readme.imgs/image-13.png)
+![alt text](public/assets/readme.imgs/image-9.png) ![alt text](public/assets/readme.imgs/image-10.png) ![alt text](public/assets/readme.imgs/image-11.png) ![alt text](public/assets/readme.imgs/image-12.png) ![alt text](public/assets/readme.imgs/image-13.png)
