@@ -8,7 +8,8 @@ Projeto desenvolvido por Jean Martins, tem como função demonstrar como seria s
 
 Ao colar um texto dentro do cartão de captura,
 
-```Aperte Alt + C
+```
+    Aperte Alt + C
 ```
 que um pequena janela se abra para rapidamene editar o novo cartão de colagem, podendo somente colocar um nome ou, também, adicionar um selo para melhor identificação do cartão a ser salvo.
 ![alt text](readme.imgs/image-1.png)
@@ -19,7 +20,8 @@ que um pequena janela se abra para rapidamene editar o novo cartão de colagem, 
 Snippets tem como público, usuários que movimentam grandes quantidades de textos, linhas de código, etc.
 Usuários que necessitam de um espaço claro e objetivo, não somente para deixar salvo suas colagens,
 
-```Mas, principalmente, para organizar suas ferramentas 
+```
+    Mas, principalmente, para organizar suas ferramentas 
     de maneira simples e moderna.
 ```
 
@@ -27,7 +29,8 @@ Usuários que necessitam de um espaço claro e objetivo, não somente para deixa
 
 O projeto conta com um filtro ráído podendo escolher entre 1 (uma) das 4 (quatro) opções de categorias
 
-```Basta clicar no ícone de funil no canto superior direito da área de cartões, exemplo a seguir:  
+```
+    Basta clicar no ícone de funil no canto superior direito da área de cartões, exemplo a seguir:  
 ```
 ![alt text](readme.imgs/image-2.png)
 
